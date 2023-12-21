@@ -197,6 +197,7 @@ gen
 ### Custom folders
 /code/preproc/*
 /code/ai/auxil/*
+/code/ai/debug/*
 /code/ai/slurm/*
 
 /data/*

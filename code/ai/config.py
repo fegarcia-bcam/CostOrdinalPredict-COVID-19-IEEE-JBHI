@@ -12,6 +12,7 @@ from utils_cost import gen_cost_matrix_asymmetric
 # files and paths
 PATH_DATA = '../../data/'
 FILE_DATA_IN = os.path.join(PATH_DATA, 'data_COVID-19.csv')
+FILE_DATA_SUPPL = os.path.join(PATH_DATA, 'data_COVID-19_suppl.csv')
 FILE_VAR_NAMES = os.path.join(PATH_DATA, 'var_names.json')
 FILE_FEAT_NAMES = os.path.join(PATH_DATA, 'feat_names.json')
 
@@ -24,14 +25,16 @@ FILE_RESULTS_CALIBRATE = 'results_{}.json'
 PATH_RESULTS_SHAP = '../../results/shap'
 FILE_RESULTS_SHAP = 'results_{}.json'
 
+PATH_RESULTS_BASELINE = '../../results/baseline'
+FILE_RESULTS_BASELINE = 'results_{}.json'
+
 DATETIME_FORMAT = '%Y-%m-%d_%H;%M;%S'
 DELIMITER = ';'
 
 # error message due to data availability
-MSSG_ERROR_DATA = 'The dataset which supports the findings of this study is available on request from the corresponding author.\n' \
-                  'However, the human data could not be made publicly available due to restrictions from our Ethics Committees for Clinical Research, ' \
-                  'as they contain information that might compromise the privacy of the patients in the cohort.\n' \
-                  'Please contact mailto:fegarcia@bcamath.org'
+MSSG_ERROR_DATA = 'The dataset which supports the findings of this study could not be made publicly available due to restrictions from our Ethics Committees for Clinical Research (CEIc), ' \
+                  'as it contains potentially identifying or sensitive patient information.\n' \
+                  'For further requests, please contact CEIc at mailto:hgu.ceic@osakidetza.eus'
 
 # data
 # ordinal regression / ordinal classification problem
@@ -62,7 +65,7 @@ EXCLUDE_HOSPITAL = True
 # variable encoding
 VARS_IN = [var for var in VAR_NAMES.values() if var not in VARS_STRATIF + VARS_EXTRA]
 
-VARS_ORDINAL = {'pat_alcohol': 3, 'pat_tobacco': 3, 'neumo_curb65': 5, 'sepsis_qsofa': 4,
+VARS_ORDINAL = {'pat_alcohol': 3, 'pat_tobacco': 3, 'pneumo_curb65': 5, 'sepsis_qsofa': 4,
                 'symptoms_fever': 3, 'covid-treatm_cortic-iv': 3, 'covid-treatm_lmwh': 5}
 
 VARS_CATEGORICAL = {'comorb_broncho': ['No', 'Asthma', 'DPLP', 'COPD', 'Others'],  # never missing
@@ -75,7 +78,7 @@ if EXCLUDE_HOSPITAL:
     if VAR_GROUP in VARS_CATEGORICAL:
         VARS_CATEGORICAL.pop(VAR_GROUP)
 
-VARS_CONTINUOUS = ['pat_age', 'pat_height', 'pat_weight', 'pat_bmi', 'comorb_charlson', 'neumo_psi-sc',
+VARS_CONTINUOUS = ['pat_age', 'pat_height', 'pat_weight', 'pat_bmi', 'comorb_charlson', 'pneumo_psi-sc',
                    'symptoms_days', 'emerg-status', 'emerg-pulmo_infiltr-lobs', 'blood-t', 'abgt', 'covid-diagn_days',
                    'demograph', 'pollut']
 
